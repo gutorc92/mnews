@@ -5,11 +5,16 @@ class Brasil247Spider(scrapy.Spider):
     name = "brasil247"
 
     def start_requests(self):
-        urls = [
-            'https://www.brasil247.com/pt/247/economia/336427/Guru-de-Alckmin-quer-privatizar-Petrobras.htm',
-            'https://www.brasil247.com/pt/247/brasil/336517/Temer-adia-recurso-pela-posse-de-Cristiane-para-evitar-derrota-no-STF.htm',
-            'https://www.brasil247.com/pt/colunistas/geral/336437/A-desinformação-como-fonte-de-ira.htm',
-        ]
+        urls = []
+        for x in range(336650, 336550, -1):
+            urls.append("https://www.brasil247.com/pt/247/poder/{}".format(x))
+
+        print(urls)
+        # urls = [
+        #     'https://www.brasil247.com/pt/247/economia/336427/Guru-de-Alckmin-quer-privatizar-Petrobras.htm',
+        #     'https://www.brasil247.com/pt/247/brasil/336517/Temer-adia-recurso-pela-posse-de-Cristiane-para-evitar-derrota-no-STF.htm',
+        #     'https://www.brasil247.com/pt/colunistas/geral/336437/A-desinformação-como-fonte-de-ira.htm',
+        # ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
