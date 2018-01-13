@@ -15,6 +15,7 @@ class Brasil247Spider(scrapy.Spider):
         #     'https://www.brasil247.com/pt/247/brasil/336517/Temer-adia-recurso-pela-posse-de-Cristiane-para-evitar-derrota-no-STF.htm',
         #     'https://www.brasil247.com/pt/colunistas/geral/336437/A-desinformação-como-fonte-de-ira.htm',
         # ]
+
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
@@ -23,7 +24,7 @@ class Brasil247Spider(scrapy.Spider):
         text = ""
         for p in ps:
             text += p.extract() + " "
-        text = text.strip("\n\r")
+        text = text.strip("\n\r ")
         title = response.xpath("//*[@id='wrapper']/div[5]/h2/text()").extract()
         if type(title) == list and len(title) == 1:
             title = title[0].strip("\n\r ")
